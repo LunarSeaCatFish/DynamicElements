@@ -23,10 +23,27 @@ window.onload = function () {
         // Get Product from the form
         let p = getProduct();
 
-        // Display product
-        console.log(p);
+        displayProduct(p);
     });
 }
+
+function displayProduct(prod:Product) {
+    // Get the product display div
+    let displayDiv = document.querySelector("#productDisplay") as HTMLDivElement;
+    displayDiv.innerHTML += 
+        `
+        <div class="col-sm-12 col-md-6 col-lg-4 mx-auto mb-3">
+            <div class="card" style="width: 18rem;">
+                <img src="https://placehold.co/250" class="card-img-top" alt="Just a placeholder image">
+                <div class="card-body">
+                    <h5 class="card-title">${prod.title}</h5>
+                    <p class="card-text">This product is being sold for ${prod.price}</p>
+                </div>
+            </div>
+        </div>
+        `;
+}
+
 function getProduct() {
     const productTitleTextBox = <HTMLInputElement>document.querySelector("#productTitle");
     let title: string = productTitleTextBox.value;
